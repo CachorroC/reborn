@@ -1,10 +1,13 @@
+/** @format */
+
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
   align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
 }
 
 .description {
@@ -42,37 +45,52 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(25%, auto));
-  width: var(--max-width);
-  max-width: 100%;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: stretch;
+  width: auto;
+  margin: 5vh;
+  .card {
+    padding: 1rem 1.2rem;
+    margin: 5vh;
+    border-radius: var(--border-radius);
+    background-color: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface-variant);
+    border: 1px solid rgba(var(--card-border-rgb), 0);
+    transition: background 200ms, border 200ms;
+    box-shadow: var(--md-elevation-2);
+
+    &:hover,
+    &:active {
+      background-color: var(--md-sys-color-secondary);
+      box-shadow: var(--md-elevation-8);
+      color: var(--md-sys-color-on-secondaru);
+      border: 1px solid var(--md-sys-color-outline);
+      span {
+        font-variation-settings: "FILL" 1, "wght" 400,
+          "GRAD" 200, "opsz" 48;
+      }
+    }
+    span {
+      display: inline-block;
+      transition: transform 200ms;
+    }
+    h2 {
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+    p {
+      margin: 0;
+      opacity: 0.6;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      max-width: 30ch;
+    }
+  }
 }
 
-.card {
-  padding: 1rem 1.2rem;
-  border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
-}
-
-.card span {
-  display: inline-block;
-  transition: transform 200ms;
-}
-
-.card h2 {
-  font-weight: 600;
-  margin-bottom: 0.7rem;
-}
-
-.card p {
-  margin: 0;
-  opacity: 0.6;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  max-width: 30ch;
-}
-
-.center {
+.card .center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,7 +115,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -125,7 +143,7 @@
 
 .thirteen::before,
 .thirteen::after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
 }
@@ -153,11 +171,6 @@
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-  .card:hover {
-    background: rgba(var(--card-rgb), 0.1);
-    border: 1px solid rgba(var(--card-border-rgb), 0.15);
-  }
-
   .card:hover span {
     transform: translateX(4px);
   }
@@ -225,7 +238,8 @@
     padding: 2rem 1rem 1.4rem;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
+    border-bottom: 1px solid
+      rgba(var(--callout-border-rgb), 0.25);
     background: linear-gradient(
       to bottom,
       rgba(var(--background-start-rgb), 1),
